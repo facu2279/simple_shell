@@ -53,7 +53,7 @@ int main(int ac, char **av, char **env)
  * @env: environment variables
  * Return: 0 on succes, 1 on failure.
  */
-int main_extension(char **args,char *path, char *buffer, char **env)
+int main_extension(char **args, char *path, char *buffer, char **env)
 {
 	struct stat st;
 

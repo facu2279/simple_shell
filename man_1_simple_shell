@@ -9,8 +9,8 @@
 .P
 .P
 .SH DESCRIPTION
-simple_shell is, as the name, a simple command line interpreter, that provides a command line user interface 
-meaning that it reads lines from either file or terminal (standard input), interprets them, and executes commands. The first Unix 
+simple_shell is, as the name, a simple command line interpreter, that provides a command line user interface
+meaning that it reads lines from either file or terminal (standard input), interprets them, and executes commands. The first Unix
 shell was the Thompson shell, sh, written by Ken Thompson. simple_shell will check if the first argument passed to it is a built-in function (ls, cd, pwd, etc).
 If it fails, it will check whether is a built-in script, if not then it will check the PATH for the executable file. And only when it finds it, will execute the command.
 .P
