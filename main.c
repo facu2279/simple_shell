@@ -59,7 +59,8 @@ int main_extension(char **args,char *path, char *buffer, char **env)
 
 	if (stat(args[0], &st) != 0)
 	{
-		path = getpath_4(args[0], env);
+		/*path = getpath_4(args[0], env);*/
+		path = checkexec(args[0], env);
 		if (path == NULL)
 		{
 			free(buffer);
@@ -81,4 +82,73 @@ int main_extension(char **args,char *path, char *buffer, char **env)
 	free(path);
 	free(args);
 	return (0);
+}
+
+char *checkexec(char *file, char **environ)
+{
+	char *buff, *buff2, *buff3, PATH[] = "PATH";
+	int a = 0, b;
+	struct stat st;
+
+	if (stat(file, &st) == 0)
+		return (file);
+	buff3 = _strcon("/", file);
+	while (environ[a] != NULL)
+	{
+		buff = malloc(sizeof(char) * 20);
+		for (b = 0; environ[a][b] != '='; b++)
+			buff[b] = environ[a][b];
+		if (_strcmp(buff, PATH) == 0)
+		{
+			free(buff);
+			break;
+		}
+		free(buff);
+		a++;
+	}
+	b = _strlen(environ[a]);
+	buff = malloc(sizeof(char) * b);
+	_strcpy(buff, environ[a]);
+	strtok(buff, "=");
+	buff2 = strtok(NULL, ":");
+	while (buff2 != NULL)
+	{
+		buff2 = _strcon(buff2, buff3);
+		if (stat(buff2, &st) == 0)
+		{
+			/*free(file), */free(buff), free(buff3);
+			return (buff2);
+		}
+		free(buff2);
+		buff2 = strtok(NULL, ":");
+	}
+	/*free(file), */free(buff), free(buff3);
+	return (NULL);
+}
+
+/**
+ * _strcon - concatenates two strings
+ *
+ * @dest: destiny string
+ * @src: string to add
+ * Return: pointer to dest
+ */
+
+char *_strcon(char *dest, char *src)
+{
+	int a, b, size;
+	char *buff;
+
+	size = (_strlen(dest)) + (_strlen(src)) + 1;
+	buff = malloc(sizeof(char) * size);
+	for (a = 0; dest[a] != '\0'; a++)
+	{
+		buff[a] = dest[a];
+	}
+	for (b = 0; src[b] != '\0'; b++)
+	{
+		buff[a + b] = src[b];
+	}
+	buff[a + b] = '\0';
+	return (buff);
 }
