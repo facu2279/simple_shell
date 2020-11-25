@@ -83,6 +83,7 @@ char **split_line_2(char *buffer)
 char *getpath_4(char *str, char **env)
 {
 	int res = 0;
+	int xd = 0;
 	char *cat = NULL, *barra = "/";
 	char *tkn = NULL;
 	char *path = NULL;
@@ -116,7 +117,10 @@ char *getpath_4(char *str, char **env)
 		}
 		tkn = strtok(NULL, ":");
 	}
-	print_error(str, "command not found");
+	xd = _strlen(str);
+	write(1, "./hsh: 1: ", 10);
+	write(1, str, xd);
+	write(1, ": not found\n", 12);
 	free(tkn);
 	free(path);
 	return (NULL);
