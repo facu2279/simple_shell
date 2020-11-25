@@ -1,4 +1,4 @@
-.TH hsh 2 "26 November 2020" "1.0" "simple_shell man page"
+.TH hsh 1 "26 November 2020" "1.0" "simple_shell man page"
 .SH NAME
 .B simple_shell
 - simple command interpreter.
@@ -68,4 +68,4 @@ sh(1) man page.
 No bugs.
 
 .SH AUTHOR
-Soledad Frechou and Tadeo Grach - Holberton School - Cohort #13.
+Cecilia Giudice and Facundo Diaz - Holberton School - Cohort #13.
