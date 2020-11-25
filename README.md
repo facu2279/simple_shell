@@ -16,12 +16,12 @@ The command lines are simple, no semicolons, no pipes, no redirections or any ot
 The command lines are made only of one word. Arguments can be passed to programs.
 If an executable cannot be found, prints an error message and displays the prompt again.
 It can handle errors.
-It also handles the “end of file” condition (Ctrl+D)
-Handles the PATH
+It also handles the “end of file” condition (Ctrl+D).
+Handles the PATH.
 Handles the exit built-in, that exits the shell
-Uses the env as a built-in, that prints the current environment
+Uses the env as a built-in, that prints the current environment.
 Handles Ctrl+C: the shell does not quit when the user inputs ^C
-Handles the builtin command cd (cd [directory], cd .. and cd)
+Handles the builtin command cd (cd [directory], cd .. and cd).
 
 ## Getting started
 
