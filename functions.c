@@ -118,9 +118,7 @@ char *getpath_4(char *str, char **env)
 		tkn = strtok(NULL, ":");
 	}
 	xd = _strlen(str);
-	write(1, "./hsh: 1: ", 10);
-	write(1, str, xd);
-	write(1, ": not found\n", 12);
+	write(1, "./hsh: 1: ", 10), write(1, str, xd), write(1, ": not found\n", 12);
 	free(tkn);
 	free(path);
 	return (NULL);
