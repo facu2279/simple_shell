@@ -1,4 +1,4 @@
-.TH man 2 "26 November 2020" "0.32" "simple_shell man page"
+.TH hsh 2 "26 November 2020" "1.0" "simple_shell man page"
 .SH NAME
 .B simple_shell
 - simple command interpreter.
@@ -7,15 +7,12 @@
 .P
 .B "./hsh"
 .P
-.B Use:
-.P
-.B[command] [argument] ...
-
 .P
 .SH DESCRIPTION
 simple_shell is, as the name, a simple command line interpreter, that provides a command line user interface 
 meaning that it reads lines from either file or terminal (standard input), interprets them, and executes commands. The first Unix 
-shell was the Thompson shell, sh, written by Ken Thompson.
+shell was the Thompson shell, sh, written by Ken Thompson. simple_shell will check if the first argument passed to it is a built-in function (ls, cd, pwd, etc).
+If it fails, it will check whether is a built-in script, if not then it will check the PATH for the executable file. And only when it finds it, will execute the command.
 .P
 .SH OVERVIEW
 simple_shell interprets and executes commands that the same simple_shell reads from the standard input or files.
@@ -34,6 +31,12 @@ prompt "<3" appears you are in interactive mode, meaning you can type your comma
 .RS
 .B <3 ./hsh
 .P
+.RE
+Also, simple_shell works in non-interactive mode with shell scripts.
+.P
+.RS
+.B echo 'pwd' | ./hsh
+.P
 .SH BUILTINS
 Here, we list the built-in commands from the simple_shell program. They are built-in because they are needed to
 perform an operation that can not be performed by another separate process. These are buit-in for efficiecy.
@@ -46,27 +49,19 @@ perform an operation that can not be performed by another separate process. Thes
 .P
 --- Switch to specified directory.
 .P
-.B echo [arguments]
-.P
---- Prints the argument to the standard output, separated by spaces, with a new line.
-.P
-.B echo -n [arguments]
-.P
---- Prints the argument to the standard output, separated by spaces, but without the new line.
-.P
 .B exit
 .P
 --- Terminate the shell process.
 .P
-.B pwd
+.B env
 .P
---- Prints the path of the current directory.
+--- Prints all environment variables.
 .P
 .SH SEE ALSO
-man page printf(3).
+sh(1) man page.
 
 .SH BUGS
-No bugs :)
+No bugs.
 
 .SH AUTHOR
 Facundo Diaz and Cecilia Giudice - Holberton School cohort #13.
