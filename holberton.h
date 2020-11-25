@@ -35,7 +35,7 @@ int main_extension(char **args, char *path, char *buffer, char **env);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 char *str_concat(char *s1, char *s2);
 int _strlen(char *s);
-int fhelp(char **args, char **env, char *buffer);
+/*int fhelp(char **args, char **env, char *buffer);*/
 int fexit(char **args, char **env, char *buffer);
 int fcd(char **argv, char **env, char *buffer);
 int fenv(char **args, char **env, char *buffer);
@@ -48,4 +48,7 @@ int _strncmp(char *s1, char *s2, int len);
 void print_error(char *str, char *error);
 int dir_check(char *dir_name);
 char *spaces(char *buffer);
+/*tomi*/
+char *checkexec(char *file, char **environ);
+char *_strcon(char *dest, char *src);
 #endif
