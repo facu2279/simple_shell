@@ -1,0 +1,160 @@
+.TH man 2 "26 November 2020" "0.32" "simple_shell man page"
+.SH NAME
+.B simple_shell
+- simple command interpreter.
+.SH SYNOPSIS
+.B Start shell:
+.B"./hsh"
+.B Use:
+.B[command] [argument] ...
+
+
+.SH DESCRIPTION
+The _printf() family of functions produces output according to a format as described below. _printf() writes output to the stdout.
+This function writes the output under the control of a format string that specifies how subsequent arguments (or arguments accessed via the variable-length argument facili
+ties of stdarg(3)) are converted for output.
+This function returns the number of characters printed (not including the trailing '\0' used to end output to strings) or a negative value if an output error occurs.
+The format string is composed of zero or more directives of zero or more directives: ordinary characters (not %), which are copied unchanged to the output streams and conv
+ersion specifications, each of which results in fetching zero or more sunsequent arguments. Each conversion specification is introduced by the % character. The arguments m
+ust correspond properly (after type promotion) with the conversion specifier.
+
+.SH OPTIONS
+.B %c
+- Prints a single character
+
+.B %s
+- Prints a string of characters
+
+.B %i
+- Prints an int
+
+.B %d
+- Prints a decimal
+
+.B %b
+- Converts a decimal to binary
+
+.B %u
+- Prints an unsigned int
+
+.B %x
+- Converts a decimal to hexadecimal (in lowercase letter characters when applicable)
+
+.B %X
+- Converts a decimal to hexadecimal (in uppercase letter characters when applicable)
+
+.B %o
+- Converts a decimal to octal
+
+.B %%
+- Prints a single %
+
+.B %r
+- Reverses a string
+
+.B %R
+- Converts to ROT13
+
+.B %S
+- Prints non-printable characters in hexadecimal
+
+.SH EXAMPLES
+.B --- Print a single character 'h' followed by a newline:
+
+_printf ("%c\\n", 'h');
+
+# h
+
+
+.B --- Print a string of characters 'Hello world!' followed by a newline:
+
+_printf ("%s\\n", "Hello world!");
+
+# Hello world!
+
+
+.B --- Print an integer number 5 followed by a newline:
+
+_printf("%i\\n", 5);
+
+# 5
+
+
+.B --- Convert the decimal 5 to binary followed by a newline:
+
+_printf("%b\\n", 5);
+
+# 101
+
+
+.B --- Print an unsigned integer 980 followed by a newline:
+
+_printf("%u\\n", 980);
+
+# 980
+
+
+.B --- Convert the decimal 4998876 to hexadecimal followed by a newline:
+
+_printf("%x\\n", 4998876);
+
+# 4c46dc
+
+
+.B --- Convert the decimal 4998876 to hexadecimal followed by a newline:
+
+_printf("%X\\n", 4998876);
+
+# 4C46DC
+
+
+.B --- Convert the decimal 980 to octal followed by a newline:
+
+_printf("%o\\n", 980);
+
+# 1724
+
+
+.B --- Use \n anywhere to start a new line:
+
+_printf ("Two separate\\nlines\\n");
+
+# Two separate
+
+# lines
+
+
+.B --- Print a single % character, followed by a new line:
+
+_printf("%%\\n");
+
+# %
+
+.B --- Print a string in reverse followed by a new line.
+
+_printf("%r\\n", "Hello");
+
+# olleH
+
+
+.B --- Print a string converted to ROT13 followed by a new line.
+
+_printf("%R\\n", "ROT13");
+
+# EBG13
+
+.B --- Print non-printable characters in hexadecimal followed by a new line.
+
+_printf("%S\\n", "Holberton\\nSchool");
+
+# Holberton\\x0ASchool
+
+
+.SH SEE ALSO
+man page printf(3).
+
+.SH BUGS
+No bugs :)
+
+.SH AUTHOR
+Soledad Frechou and Cecilia Giudice - Holberton School cohort #13.
