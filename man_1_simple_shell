@@ -38,6 +38,30 @@ prompt "<3" appears you are in interactive mode, meaning you can type your comma
 Here, we list the built-in commands from the simple_shell program. They are built-in because they are needed to
 perform an operation that can not be performed by another separate process. These are buit-in for efficiecy.
 .P
+.B cd
+.P
+--- Switch to HOME directory.
+.P
+.B cd [directory]
+.P
+--- Switch to specified directory.
+.P
+.B echo [arguments]
+.P
+--- Prints the argument to the standard output, separated by spaces, with a new line.
+.P
+.B echo -n [arguments]
+.P
+--- Prints the argument to the standard output, separated by spaces, but without the new line.
+.P
+.B exit
+.P
+--- Terminate the shell process.
+.P
+.B pwd
+.P
+--- Prints the path of the current directory.
+.P
 .SH SEE ALSO
 man page printf(3).
 
@@ -45,4 +69,4 @@ man page printf(3).
 No bugs :)
 
 .SH AUTHOR
-Soledad Frechou and Cecilia Giudice - Holberton School cohort #13.
+Facundo Diaz and Cecilia Giudice - Holberton School cohort #13.
