@@ -138,7 +138,7 @@ List of allowed functions and system calls:
 - write (man 2 write)
 
 ## Authors
-Soledad Frechou and Tadeo Grach
+Cecilia Giudice and Facundo Diaz
 
 ## Date
 11/11/2020 Start - 25/11/2020 end
