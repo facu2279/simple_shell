@@ -18,7 +18,7 @@ If an executable cannot be found, prints an error message and displays the promp
 It can handle errors.
 It also handles the “end of file” condition (Ctrl+D).
 Handles the PATH.
-Handles the exit built-in, that exits the shell
+Handles the exit built-in, that exits the shell.
 Uses the env as a built-in, that prints the current environment.
 Handles Ctrl+C: the shell does not quit when the user inputs ^C
 Handles the builtin command cd (cd [directory], cd .. and cd).
