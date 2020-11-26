@@ -17,13 +17,16 @@ char *find_path(char **env)
 			break;
 		}
 	}
-	tmp = malloc(_strlen(env[i]) + 1);
-	if (tmp != NULL)
+	if (env[i] != NULL)
 	{
-		tmp = _strcpy(tmp, env[i]);
-		return (tmp);
+		tmp = malloc(_strlen(env[i]) + 1);
+		if (tmp != NULL)
+		{
+			tmp = _strcpy(tmp, env[i]);
+			return (tmp);
+		}
+		free(tmp);
 	}
-	free(tmp);
 	return (NULL);
 
 }
