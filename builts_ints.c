@@ -74,16 +74,17 @@ int fcd(char **args, char **env, char *buffer)
 			if (j == 5)
 				break;
 		}
-		tmp = malloc(_strlen(env[i]) + 1);
+		tmp = malloc(_strlen(env[i]) - 4);
 		if (tmp == NULL)
 			perror("");
-		for (k = 0; env[i][j] != '\0'; j++, k++)
+		for (k = 0, j = 5; env[i][j] != '\0'; j++, k++)
+			tmp[k] = 'a';
+		for (k = 0, j = 5; env[i][j] != '\0'; j++, k++)
 			tmp[k] = env[i][j];
+		tmp[k] = '\0';
 		if (chdir(tmp) != 0)
-		{
-			free(tmp);
 			perror("");
-		}
+		free(tmp);
 	}
 	else
 	{
@@ -94,7 +95,7 @@ int fcd(char **args, char **env, char *buffer)
 			perror("");
 		}
 	}
-		free(buffer);
-		free(args);
-		return (0);
+	free(buffer);
+	free(args);
+	return (0);
 }
