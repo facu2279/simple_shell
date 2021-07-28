@@ -62,7 +62,7 @@ int fcd(char **args, char **env, char *buffer)
 	char *tmp = NULL;
 	int i, j, k;
 
-	if (args[1] == NULL)
+	if (args[1])
 	{
 		for (i = 0; env[i] != NULL; i++)
 		{
@@ -87,6 +87,7 @@ int fcd(char **args, char **env, char *buffer)
 	}
 	else
 	{
+		args[1] = "/home";
 		if (chdir(args[1]) != 0)
 		{
 			free(tmp);
