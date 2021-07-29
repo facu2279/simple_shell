@@ -140,6 +140,7 @@ int fcd(char **args, char **env, char *buffer)
 				perror("");
 		}
 		else
+		{
 			setenv("OLDPWD", my_cwd, 1);
 			if (chdir(tmp) != 0)
 				perror("");
@@ -148,7 +149,7 @@ int fcd(char **args, char **env, char *buffer)
 				getcwd(my_cwd, 1024);
 				setenv("PWD", tmp, 1);
 			}
-				
+		}
 		free(tmp);
 	}
 	free(buffer);
