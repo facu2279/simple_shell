@@ -94,6 +94,7 @@ int fcd(char **args, char **env, char *buffer)
 
 	if (args[1] && args[1][0] == '.' && args[1][1] == '.')
 	{
+		setenv("OLDPWD", my_cwd, 1);
 		if (chdir("..") != 0)
 			perror("");
 		else
@@ -103,10 +104,14 @@ int fcd(char **args, char **env, char *buffer)
 	else if (args[1] && args[1][0] == '-')
 	{
 		printf("%s\n", tmp);
+		setenv("OLDPWD", my_cwd, 1);
 		if (chdir(tmp) != 0)
 			perror("");
 		else
-			setenv("PWD", tmp, 1);
+		{
+			getcwd(my_cwd, 1024);
+			setenv("PWD", my_cwd, 1);
+		}
 		free(tmp);
 	}
 	else if (args[1])
@@ -114,13 +119,17 @@ int fcd(char **args, char **env, char *buffer)
 		newdir = str_concat(tmp, "/");
 		free(tmp);
 		newdir1 = str_concat(newdir, args[1]);
+		setenv("OLDPWD", my_cwd, 1);
 		free(newdir);
 		if (chdir(newdir1) != 0)
 		{
 			perror("");
 		}
 		else
-			setenv("PWD", newdir1, 1);
+		{
+			getcwd(my_cwd, 1024);
+			setenv("PWD", my_cwd, 1);
+		}
 		free(newdir1);
 	}
 	else
@@ -131,10 +140,15 @@ int fcd(char **args, char **env, char *buffer)
 				perror("");
 		}
 		else
+			setenv("OLDPWD", my_cwd, 1);
 			if (chdir(tmp) != 0)
 				perror("");
 			else
+			{
+				getcwd(my_cwd, 1024);
 				setenv("PWD", tmp, 1);
+			}
+				
 		free(tmp);
 	}
 	free(buffer);
