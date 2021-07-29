@@ -62,8 +62,10 @@ int fcd(char **args, char **env, char *buffer)
 	char *tmp = NULL;
 	char *newdir = NULL;
 	char *newdir1 = NULL;
-	int i, j, k;
+	char my_cwd[1024];
+	int i, j, k, flag = 0;
 
+	getcwd(my_cwd, 1024);
 	for (i = 0; env[i] != NULL; i++)
 	{
 		for (j = 0; j < 5; j++)
@@ -72,6 +74,11 @@ int fcd(char **args, char **env, char *buffer)
 			{
 				break;
 			}
+		}
+
+		if (env[i][5] == '\0' && j == 5)
+		{
+			flag = 1;
 		}
 		if (j == 5)
 			break;
@@ -89,6 +96,8 @@ int fcd(char **args, char **env, char *buffer)
 	{
 		if (chdir("..") != 0)
 			perror("");
+		else
+			setenv("PWD", my_cwd, 1);
 		free(tmp);
 	}
 	else if (args[1] && args[1][0] == '-')
@@ -96,6 +105,8 @@ int fcd(char **args, char **env, char *buffer)
 		printf("%s\n", tmp);
 		if (chdir(tmp) != 0)
 			perror("");
+		else
+			setenv("PWD", tmp, 1);
 		free(tmp);
 	}
 	else if (args[1])
@@ -108,12 +119,22 @@ int fcd(char **args, char **env, char *buffer)
 		{
 			perror("");
 		}
+		else
+			setenv("PWD", newdir1, 1);
 		free(newdir1);
 	}
 	else
 	{
-		if (chdir(tmp) != 0)
-			perror("");
+		if (flag == 1)
+		{
+			if (chdir(".") != 0)
+				perror("");
+		}
+		else
+			if (chdir(tmp) != 0)
+				perror("");
+			else
+				setenv("PWD", tmp, 1);
 		free(tmp);
 	}
 	free(buffer);
