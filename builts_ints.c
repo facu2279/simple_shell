@@ -60,40 +60,61 @@ int fcd(char **args, char **env, char *buffer)
 {
 	char *path = "HOME=";
 	char *tmp = NULL;
+	char *newdir = NULL;
+	char *newdir1 = NULL;
 	int i, j, k;
 
-	if (args[1])
+	for (i = 0; env[i] != NULL; i++)
 	{
-		for (i = 0; env[i] != NULL; i++)
+		for (j = 0; j < 5; j++)
 		{
-			for (j = 0; j < 5; j++)
+			if (path[j] != env[i][j])
 			{
-				if (path[j] != env[i][j])
-					break;
-			}
-			if (j == 5)
 				break;
+			}
 		}
-		tmp = malloc(_strlen(env[i]) - 4);
-		if (tmp == NULL)
+		if (j == 5)
+			break;
+	}
+	tmp = malloc(_strlen(env[i]) - 4);
+	if (tmp == NULL)
+		exit(98);
+	for (k = 0, j = 5; env[i][j] != '\0'; j++, k++)
+		tmp[k] = 'a';
+	for (k = 0, j = 5; env[i][j] != '\0'; j++, k++)
+		tmp[k] = env[i][j];
+	tmp[k] = '\0';
+
+	if (args[1] && args[1][0] == '.' && args[1][1] == '.')
+	{
+		if (chdir("..") != 0)
 			perror("");
-		for (k = 0, j = 5; env[i][j] != '\0'; j++, k++)
-			tmp[k] = 'a';
-		for (k = 0, j = 5; env[i][j] != '\0'; j++, k++)
-			tmp[k] = env[i][j];
-		tmp[k] = '\0';
+		free(tmp);
+	}
+	else if (args[1] && args[1][0] == '-')
+	{
+		printf("%s\n", tmp);
 		if (chdir(tmp) != 0)
 			perror("");
 		free(tmp);
 	}
-	else
+	else if (args[1])
 	{
-		args[1] = "/home";
-		if (chdir(args[1]) != 0)
+		newdir = str_concat(tmp, "/");
+		free(tmp);
+		newdir1 = str_concat(newdir, args[1]);
+		free(newdir);
+		if (chdir(newdir1) != 0)
 		{
-			free(tmp);
 			perror("");
 		}
+		free(newdir1);
+	}
+	else
+	{
+		if (chdir(tmp) != 0)
+			perror("");
+		free(tmp);
 	}
 	free(buffer);
 	free(args);
