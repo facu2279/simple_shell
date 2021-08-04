@@ -106,7 +106,21 @@ int fcd(char **args, char **env, char *buffer)
 		if (flag == 1)
 			_chdir(".");
 		else
+<<<<<<< HEAD
 			_chdir(tmp);
+=======
+		{
+			setenv("OLDPWD", my_cwd, 1);
+			if (chdir(tmp) != 0)
+				perror("");
+			else
+			{
+				getcwd(my_cwd, 1024);
+				setenv("PWD", tmp, 1);
+			}
+		}
+		free(tmp);
+>>>>>>> ba48dff94cb7b5d1bd4e3016d06c11fe98c55e89
 	}
 
 	free(tmp);
