@@ -1,7 +1,0 @@
-#!/bin/bash
-
-git add --all .;
-read title;
-git status;
-git commit -m "$title";
-git push;
